@@ -5,11 +5,10 @@ I made this project to get myself more familiar with deep learning and how to im
 
 In the end a user should be able to draw on the app, regardless of platform, and get a classification back within a reasonable amount of time. I'm uploading the code now since I have to turn it in but the app is not finished yet, the data input for the model is not ready yet.
 
-
-[x] Flutter App
-[x] Keras convolutional neural network
-[x] Tflitee model conversion
-[ ] Tflite model implementation on Flutter app
+- [x] Flutter App
+- [x] Keras convolutional neural network
+- [x] Tflite model conversion
+- [ ] Tflite model implementation on Flutter app
 
 #### Some interesting images from the input layer, with a candle image as input, and several hidden layers.
 ![CNN image](https://github.com/JesseB-Kit/drawing_nn/blob/master/image.PNG "image")
