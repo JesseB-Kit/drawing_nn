@@ -12,4 +12,4 @@ In the end a user should be able to draw on the app, regardless of platform, and
 [ ] Tflite model implementation on Flutter app
 
 #### Some interesting images from the input layer, with a candle image as input, and several hidden layers.
-![CNN image](https://github.com/JesseB-Kit/drawing_nn/image.png "image")
+![CNN image](https://github.com/JesseB-Kit/drawing_nn/blob/master/image.PNG "image")
