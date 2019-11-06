@@ -3,7 +3,7 @@ An app that does on-device deep learning with a cross-platform framework to clas
 
 I made this project to get myself more familiar with deep learning and how to implement on-device deep learning (the latter still needs work). The idea is to create an app with the Flutter framework to get a cross-platform app and develop a convolutional neural network with Keras and convert that to a Tensorflowlite model.
 
-In the end a user should be able to draw on the app, regardless of platform, and get a classification back within a reasonable amount of time. I'm uploading the code now since I have to turn it in but the app is not finished yet, the data input for the model is not ready yet.
+In the end a user should be able to draw on the app, regardless of platform, and get a classification back within a reasonable amount of time. I'm uploading the code now since I have to turn it in but the app is not finished yet, the data input for the model is a little bit more difficult.
 
 - [x] Flutter App
 - [x] Keras convolutional neural network
