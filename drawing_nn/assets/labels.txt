@@ -1,0 +1,10 @@
+basketbal
+scissors
+candle
+alarm_clock
+spoon
+microphone
+t-shirt
+tooth
+paper_clip
+pillow
