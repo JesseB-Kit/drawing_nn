@@ -1,9 +1,7 @@
-
 import 'dart:io';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:tflite/tflite.dart';
-
 
 //https://stackoverflow.com/questions/50320479/flutter-how-would-one-save-a-canvas-custompainter-to-an-image-file
 // USE THIS
@@ -38,14 +36,12 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   List<Offset> points = <Offset>[];
 
-
-
   getImage() async {
     final PictureRecorder recorder = PictureRecorder();
     // print(points);
-    Sketcher(points).paint(Canvas(recorder), Size(280,280));
+    Sketcher(points).paint(Canvas(recorder), Size(280, 280));
     final Picture picture = recorder.endRecording();
-    final image = await picture.toImage(280,280);
+    final image = await picture.toImage(280, 280);
     final image_2 = await image.toByteData(format: ImageByteFormat.png);
     // WORKS!!!!!!!!!!!!!!!!!!!!
     print(image_2.buffer.asInt8List());
@@ -53,13 +49,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-
     final Container sketchArea = Container(
       margin: EdgeInsets.all(1.0),
       alignment: Alignment.topLeft,
       color: Colors.blueGrey[50],
       child: ClipRect(
-              child: CustomPaint(
+        child: CustomPaint(
           size: Size(280, 280),
           painter: Sketcher(points),
         ),
@@ -75,43 +70,49 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Expanded(
-        flex: 1,
-        child: Container(
-          padding: EdgeInsets.all(16),
-          color: Colors.red,
-          alignment: Alignment.center,
-          child: Text('Header'),
-        ),
-      ),
+              flex: 1,
+              child: Container(
+                padding: EdgeInsets.all(16),
+                color: Colors.red,
+                alignment: Alignment.center,
+                child: Text('Header'),
+              ),
+            ),
             Container(
               width: 280,
               height: 280,
-              color: Colors.blue,
-              child: GestureDetector(
-                onPanUpdate: (DragUpdateDetails details) {
-                  setState(() {
-                    RenderBox box = context.findRenderObject();
-                    Offset point = box.globalToLocal(details.globalPosition);
-                    point = point.translate(0.0, -(AppBar().preferredSize.height));
+              // color: Colors.blue,
+              child: Builder(
+                builder: (BuildContext context) {
+                  return GestureDetector(
+                    onPanUpdate: (DragUpdateDetails details) {
+                      setState(() {
+                        RenderBox box = context.findRenderObject();
+                        Offset point =
+                            box.globalToLocal(details.globalPosition);
+                        point = point.translate(
+                            0.0, -(AppBar().preferredSize.height));
 
-                    points = List.from(points)..add(point);
-                  });
+                        points = List.from(points)..add(point);
+                      });
+                    },
+                    onPanEnd: (DragEndDetails details) {
+                      points.add(null);
+                    },
+                    child: sketchArea,
+                  );
                 },
-                onPanEnd: (DragEndDetails details) {
-                  points.add(null);
-                },
-                child:sketchArea,
               ),
             ),
             Expanded(
-        flex: 1,
-        child: Container(
-          padding: EdgeInsets.all(16),
-          color: Colors.red,
-          alignment: Alignment.center,
-          child: Text('Footer'),
-        ),
-      ),
+              flex: 1,
+              child: Container(
+                padding: EdgeInsets.all(16),
+                color: Colors.red,
+                alignment: Alignment.center,
+                child: Text('Footer'),
+              ),
+            ),
           ],
         ),
       ),
@@ -141,8 +142,9 @@ class Sketcher extends CustomPainter {
   bool shouldRepaint(Sketcher oldDelegate) {
     return oldDelegate.points != points;
   }
-  Size size = Size(280, 280);
-  void paint(Canvas canvas, size) {
+
+  // Size size = Size(280, 280);
+  void paint(Canvas canvas, Size size) {
     Paint paint = Paint()
       ..color = Colors.black
       ..strokeCap = StrokeCap.round
